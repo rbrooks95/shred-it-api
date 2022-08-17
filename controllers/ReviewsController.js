@@ -5,6 +5,15 @@ function stringify(data) {
   console.log(JSON.stringify(data, null, 2));
 }
 
+const GetReviews = async (req, res) => {
+  try {
+    const reviews = await Reviews.findAll({});
+    res.send(reviews);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const CreateReview = async (req, res) => {
   try {
     let ownerId = parseInt(req.params.user_id);
@@ -34,4 +43,5 @@ const UpdateReview = async (req, res) => {
 module.exports = {
   CreateReview,
   UpdateReview,
+  GetReviews,
 };
