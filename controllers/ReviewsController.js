@@ -4,7 +4,8 @@ const { Op, literal, fn, col } = require("sequelize");
 function stringify(data) {
   console.log(JSON.stringify(data, null, 2));
 }
-
+//seeing all reviews
+// the path for it http://localhost:3001/api/reviews/feed
 const GetReviews = async (req, res) => {
   try {
     const reviews = await Reviews.findAll({});
@@ -14,6 +15,8 @@ const GetReviews = async (req, res) => {
   }
 };
 
+// creating a new review
+// the path for it http://localhost:3001/api/reviews/:user_id
 const CreateReview = async (req, res) => {
   try {
     let ownerId = parseInt(req.params.user_id);
@@ -27,9 +30,12 @@ const CreateReview = async (req, res) => {
     throw error;
   }
 };
+
+// updating a review
+// the path for it http://localhost:3001/api/reviews/:user_id
 const UpdateReview = async (req, res) => {
   try {
-    let reviewId = parseInt(req.params.twert_id);
+    let reviewId = parseInt(req.params.user_id);
     let updateReview = await Reviews.update(req.body, {
       where: { id: reviewId },
       returning: true,
