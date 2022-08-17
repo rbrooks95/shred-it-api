@@ -1,20 +1,12 @@
-const { Reviews, sequelize } = require("./models");
-const { Op } = require("sequelize");
+const express = require("express");
+const app = express();
+const cors = require("cors");
 
-function stringify(data) {
-  console.log(JSON.stringify(data, null, 2));
-}
-const findAllReviews = async () => {
-  let reviews = await Reviews.findAll();
-  stringify(reviews);
-};
+const PORT = process.env.PORT || 3001;
 
-async function main() {
-  try {
-    await findAllReviews();
-  } finally {
-    await sequelize.close();
-  }
-}
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-main();
+app.get("/", (req, res) => res.json({ message: "Server Works" }));
+app.listen(PORT, () => console.log(`Server Started On Port: ${PORT}`));
