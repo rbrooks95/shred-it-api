@@ -46,8 +46,21 @@ const UpdateReview = async (req, res) => {
   }
 };
 
+const DeleteReview = async (req, res) => {
+  try {
+    let reviewId = parseInt(req.params.user_id);
+    let deleteReview = await Reviews.destroy({
+      where: { id: reviewId },
+    });
+    res.send({ message: `Deleted Review with an id of ${reviewId}` });
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   CreateReview,
   UpdateReview,
   GetReviews,
+  DeleteReview,
 };
