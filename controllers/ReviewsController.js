@@ -46,6 +46,8 @@ const UpdateReview = async (req, res) => {
   }
 };
 
+// deletes the update
+// the path http://localhost:3001/api/reviews/user_id
 const DeleteReview = async (req, res) => {
   try {
     let reviewId = parseInt(req.params.user_id);
